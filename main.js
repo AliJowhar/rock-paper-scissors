@@ -1,13 +1,35 @@
 const getComputerChoice = () => {
   const randomGuess = Math.floor(Math.random() * 3) + 1;
-  if (randomGuess === 1) return console.log("rock");
-  if (randomGuess === 2) return console.log("paper");
-  if (randomGuess === 3) return console.log("sciors");
+  console.log(randomGuess);
+  if (randomGuess === 1) return "rock";
+  if (randomGuess === 2) return "paper";
+  if (randomGuess === 3) return "scissors";
 };
 
 const getPlayerChoice = () => {
-  const choice = prompt("Rock,Paper,Scissors");
+  // const choice = prompt("Rock,Paper,Scissors").valueOf();
+  const choice = "rock";
   return choice;
 };
 
-le;
+const gameRound = function (player, computer) {
+  if (player == computer) {
+    return console.log("Tie");
+  } else if (
+    (player == "rock" && computer == "paper") ||
+    (player == "scissors" && computer == "rock") ||
+    (player == "paper" && computer == "scissors")
+  ) {
+    return console.log("YOU LOSE...");
+  } else if (
+    (player == "rock" && computer == "scissors") ||
+    (player == "paper" && computer == "rock") ||
+    (player == "scissors" && computer == "paper")
+  ) {
+    return console.log("YOU WIN !!");
+  } else {
+    return console.log("Not a Valid entry");
+  }
+};
+
+gameRound(getPlayerChoice(), getComputerChoice());
