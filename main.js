@@ -1,3 +1,6 @@
+// let playerScore = 0;
+// let computerScore = 0;
+
 const getComputerChoice = () => {
   const randomGuess = Math.floor(Math.random() * 3) + 1;
   console.log(randomGuess);
@@ -8,7 +11,7 @@ const getComputerChoice = () => {
 
 const getPlayerChoice = () => {
   const choice = prompt("Rock,Paper,Scissors").toLocaleLowerCase();
-  // const choice = "rock";
+  console.log(choice);
   return choice;
 };
 
