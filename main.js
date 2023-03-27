@@ -3,7 +3,7 @@
 
 const getComputerChoice = () => {
   const randomGuess = Math.floor(Math.random() * 3) + 1;
-  console.log(randomGuess);
+
   if (randomGuess === 1) return "rock";
   if (randomGuess === 2) return "paper";
   if (randomGuess === 3) return "scissors";
@@ -35,4 +35,8 @@ const gameRound = function (player, computer) {
   }
 };
 
+gameRound(getPlayerChoice(), getComputerChoice());
+gameRound(getPlayerChoice(), getComputerChoice());
+gameRound(getPlayerChoice(), getComputerChoice());
+gameRound(getPlayerChoice(), getComputerChoice());
 gameRound(getPlayerChoice(), getComputerChoice());
