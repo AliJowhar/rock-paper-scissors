@@ -1,0 +1,14 @@
+.display {
+  width: 250px;
+  margin: 20px;
+  padding: 30px;
+  border: #333 solid 1px;
+}
+
+.buttons {
+  padding: 50px;
+}
+
+button {
+  margin: 10px;
+}

@@ -1,5 +1,11 @@
-// let playerScore = 0;
-// let computerScore = 0;
+const rock = document.getElementById("one");
+const paper = document.getElementById("two");
+const scissors = document.getElementById("three");
+const whoWon = document.querySelector(".currentWin");
+const score = document.querySelector(".gameScore");
+
+let playerScore = 0;
+let computerScore = 0;
 
 const getComputerChoice = () => {
   const randomGuess = Math.floor(Math.random() * 3) + 1;
@@ -9,34 +15,73 @@ const getComputerChoice = () => {
   if (randomGuess === 3) return "scissors";
 };
 
-const getPlayerChoice = () => {
-  const choice = prompt("Rock,Paper,Scissors").toLocaleLowerCase();
-  console.log(choice);
-  return choice;
+const displayScore = function () {
+  score.textContent = `Player: ${playerScore}
+  Computer: ${computerScore}`;
 };
 
-const gameRound = function (player, computer) {
+const playRound = function (player, computer) {
   if (player == computer) {
-    return console.log("Tie");
+    // playerScore++;
+    // computerScore++;
+    displayScore();
+    whoWon.textContent = `
+    TIE: 
+    PLAYER Choice: ${player} 
+    COMPUTER Choice: ${computer} `;
   } else if (
     (player == "rock" && computer == "paper") ||
     (player == "scissors" && computer == "rock") ||
     (player == "paper" && computer == "scissors")
   ) {
-    return console.log(`YOU LOSE... ${computer} beats ${player}`);
+    computerScore++;
+    displayScore();
+    whoWon.textContent = `YOU LOSE: PLAYER Choice: ${player} 
+    COMPUTER Choice: ${computer} `;
   } else if (
     (player == "rock" && computer == "scissors") ||
     (player == "paper" && computer == "rock") ||
     (player == "scissors" && computer == "paper")
   ) {
-    return console.log(`YOU WIN !!! ${player} beats ${computer}`);
+    playerScore++;
+    displayScore();
+
+    whoWon.textContent = `YOU WIN !!!
+    PLAYER Choice: ${player} 
+    Computer Choice: ${computer} `;
   } else {
-    return console.log("Not a Valid entry");
+    displayScore();
+
+    return "Not a Valid entry";
   }
 };
+const game = function () {
+  if (playerScore <= 5 && computerScore <= 5) {
+    for (let i = 0; i < 5; i++) {
+      playRound(getPlayerChoice(), getComputerChoice());
+    }
 
-gameRound(getPlayerChoice(), getComputerChoice());
-gameRound(getPlayerChoice(), getComputerChoice());
-gameRound(getPlayerChoice(), getComputerChoice());
-gameRound(getPlayerChoice(), getComputerChoice());
-gameRound(getPlayerChoice(), getComputerChoice());
+    if (playerScore > computerScore) {
+      console.log("PLAYER WINS");
+    } else {
+      console.log("COMPUTER WINS ");
+    }
+  }
+};
+// game();
+
+rock.addEventListener("click", (e) => {
+  e = "rock";
+  playRound(e, getComputerChoice());
+});
+
+paper.addEventListener("click", (e) => {
+  e = "paper";
+
+  playRound(e, getComputerChoice());
+});
+
+scissors.addEventListener("click", (e) => {
+  e = "scissors";
+  playRound(e, getComputerChoice());
+});
