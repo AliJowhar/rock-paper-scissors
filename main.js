@@ -7,6 +7,11 @@ const score = document.querySelector(".gameScore");
 let playerScore = 0;
 let computerScore = 0;
 
+const displayScore = function () {
+  score.textContent = `Player: ${playerScore}
+  Computer: ${computerScore}`;
+};
+
 const getComputerChoice = () => {
   const randomGuess = Math.floor(Math.random() * 3) + 1;
 
@@ -15,15 +20,10 @@ const getComputerChoice = () => {
   if (randomGuess === 3) return "scissors";
 };
 
-const displayScore = function () {
-  score.textContent = `Player: ${playerScore}
-  Computer: ${computerScore}`;
-};
-
 const playRound = function (player, computer) {
   if (player == computer) {
-    // playerScore++;
-    // computerScore++;
+    playerScore++;
+    computerScore++;
     displayScore();
     whoWon.textContent = `
     TIE: 
@@ -55,33 +55,37 @@ const playRound = function (player, computer) {
     return "Not a Valid entry";
   }
 };
-const game = function () {
-  if (playerScore <= 5 && computerScore <= 5) {
-    for (let i = 0; i < 5; i++) {
-      playRound(getPlayerChoice(), getComputerChoice());
-    }
-
-    if (playerScore > computerScore) {
-      console.log("PLAYER WINS");
-    } else {
-      console.log("COMPUTER WINS ");
-    }
-  }
-};
-// game();
 
 rock.addEventListener("click", (e) => {
   e = "rock";
-  playRound(e, getComputerChoice());
+
+  if (playerScore < 5 && computerScore < 5) {
+    playRound(e, getComputerChoice());
+  } else if (playerScore == 5) {
+    whoWon.textContent = `PLAYER WINS`;
+  } else if (computerScore == 5) {
+    whoWon.textContent = `COMPUTER WINS`;
+  }
 });
 
 paper.addEventListener("click", (e) => {
   e = "paper";
-
-  playRound(e, getComputerChoice());
+  if (playerScore < 5 && computerScore < 5) {
+    playRound(e, getComputerChoice());
+  } else if (playerScore == 5) {
+    whoWon.textContent = `PLAYER WINS`;
+  } else if (computerScore == 5) {
+    whoWon.textContent = `COMPUTER WINS`;
+  }
 });
 
 scissors.addEventListener("click", (e) => {
   e = "scissors";
-  playRound(e, getComputerChoice());
+  if (playerScore < 5 && computerScore < 5) {
+    playRound(e, getComputerChoice());
+  } else if (playerScore == 5) {
+    whoWon.textContent = `PLAYER WINS`;
+  } else if (computerScore == 5) {
+    whoWon.textContent = `COMPUTER WINS`;
+  }
 });
